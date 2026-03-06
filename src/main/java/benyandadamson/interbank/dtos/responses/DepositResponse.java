@@ -11,4 +11,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DepositResponse {
     private String message;
+    private String accountNumber;
 }
