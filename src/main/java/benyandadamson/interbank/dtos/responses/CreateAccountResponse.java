@@ -10,6 +10,5 @@ public class CreateAccountResponse {
     private String AccountNumber;
     private String AccountName;
     private AccountStatus accountStatus;
-    private UserType userType;
 
 }
