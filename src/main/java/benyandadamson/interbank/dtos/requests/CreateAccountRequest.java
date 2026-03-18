@@ -18,6 +18,6 @@ public class CreateAccountRequest {
     private AccountType accountType;
     private UserType userType;
     private AccountStatus accountStatus;
-    private String address3;
+    private String getting;
 
 }
