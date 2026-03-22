@@ -14,6 +14,7 @@ import lombok.Setter;
 public class Bank {
     private Long bankId;
     private String bankName;
-    private String bankCode;
+    private int bankCode = 123;
+    private int serialNumber = 000000235;
     private List<Account> accounts;
 }

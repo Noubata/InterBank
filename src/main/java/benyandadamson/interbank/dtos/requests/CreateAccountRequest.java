@@ -3,7 +3,15 @@ package benyandadamson.interbank.dtos.requests;
 import benyandadamson.interbank.data.models.AccountStatus;
 import benyandadamson.interbank.data.models.AccountType;
 import benyandadamson.interbank.data.models.UserType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreateAccountRequest {
     private String firstName;
     private String lastName;
@@ -18,6 +26,5 @@ public class CreateAccountRequest {
     private AccountType accountType;
     private UserType userType;
     private AccountStatus accountStatus;
-    private String getting;
 
 }
