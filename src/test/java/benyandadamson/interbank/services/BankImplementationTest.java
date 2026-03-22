@@ -32,6 +32,8 @@ class BankImplementationTest {
         createAccount.setUserType(UserType.INDIVIDUAL);
 
         CreateAccountResponse account = bankImplementation.createAccount(createAccount);
+        assertNotNull(account);
+        assertEquals("00000015810", account.getAccountNumber());
     }
 
 }
