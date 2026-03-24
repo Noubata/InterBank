@@ -7,6 +7,6 @@ import benyandadamson.interbank.dtos.responses.DepositResponse;
 
 public interface BankService {
     CreateAccountResponse createAccount(CreateAccountRequest createAccount);
-
     String generateAccountNumber();
+
 }
