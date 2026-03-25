@@ -17,11 +17,11 @@ import java.util.Optional;
 @Service
 public class BankImplementation implements BankService {
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
     @Autowired
-    Bank bank;
+    private Bank bank;
     @Autowired
-    AccountRepository accountRepository;
+    private AccountRepository accountRepository;
     @Override
     public CreateAccountResponse createAccount(CreateAccountRequest createAccount) {
         Optional<User> potentialUser = userRepository.findByEmail(createAccount.getEmail());
@@ -29,8 +29,18 @@ public class BankImplementation implements BankService {
             throw new AccountAlreadyExists("Account already exists!");
         }
 
+        User user = new User();
+        user.setEmail(createAccount.getEmail());
+        user.setUserType(UserType.INDIVIDUAL);
+        user.setFirstName(createAccount.getFirstName());
+        user.setHashedPassword(createAccount.getPassword());
+        user.setPhoneNumber(createAccount.getPhoneNumber());
+        user.setLastName(createAccount.getLastName());
+        user.setAccounts(new ArrayList<>());
+        User userToSave = userRepository.save(user);
+
         Account account = new Account();
-        account.setOwner(potentialUser.get());
+        account.setOwner(userToSave);
         account.setAccountStatus(AccountStatus.ACTIVE);
         account.setAccountType(AccountType.SAVING);
         account.setBalance(BigDecimal.valueOf(00.0));
