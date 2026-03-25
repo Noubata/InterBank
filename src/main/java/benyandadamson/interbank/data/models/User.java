@@ -13,7 +13,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class User {
     private Long userId;
-    private String username;
+    private String firstName;
+    private String lastName;
     private String hashedPassword;
     private String phoneNumber;
     private String email;
