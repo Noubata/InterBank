@@ -26,4 +26,5 @@ public class BankMapper {
         createAccountResponse.setAccountNumber(accountNumber);
         return createAccountResponse;
     }
+
 }
