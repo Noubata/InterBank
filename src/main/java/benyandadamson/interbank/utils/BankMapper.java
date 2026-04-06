@@ -20,7 +20,7 @@ public class BankMapper {
     public static CreateAccountResponse toResponseCreateAccount(Account account) {
         String accountNumber = bankService.generateAccountNumber();
         CreateAccountResponse createAccountResponse = new CreateAccountResponse();
-        createAccountResponse.setAccountName(account.getOwner().getUsername());
+//        createAccountResponse.setAccountName(account.getOwner().getUsername());
         createAccountResponse.setAccountType(AccountType.SAVING);
         createAccountResponse.setAccountStatus(AccountStatus.ACTIVE);
         createAccountResponse.setAccountNumber(accountNumber);
