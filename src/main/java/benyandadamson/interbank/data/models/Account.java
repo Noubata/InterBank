@@ -20,5 +20,6 @@ public class Account {
     private AccountStatus accountStatus;
     private BigDecimal balance;
     private Bank bank;
+    private String password;
     private List<Transaction> transactions;
 }
