@@ -21,9 +21,9 @@ import java.time.LocalDateTime;
 public class TransactionServiceImplementation implements TransactionService{
 
     @Autowired
-    public AccountRepository accountRepository;
+    private AccountRepository accountRepository;
     @Autowired
-    public TransactionRepository transactionRepository;
+    private TransactionRepository transactionRepository;
 
     @Override
     public DepositResponse deposit(DepositRequest depositRequest) {
