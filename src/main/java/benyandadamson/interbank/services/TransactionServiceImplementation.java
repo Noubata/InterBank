@@ -16,7 +16,6 @@ import benyandadamson.interbank.exceptions.AccountNumberNotFoundException;
 import benyandadamson.interbank.exceptions.WrongPasswordException;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class TransactionServiceImplementation implements TransactionService{
@@ -65,7 +64,25 @@ public class TransactionServiceImplementation implements TransactionService{
 
     @Override
     public TransferResponse transfer(TransferRequest transferRequest) {
-        return null;
+        validateAccountNumber(transferRequest.getDestinationAccount());
+        validateAccountNumber(transferRequest.getSourceAccount());
+        validatePassword(transferRequest.getPassword(), transferRequest.getSourceAccount());
+
+        Account senderAccount = accountRepository.findByAccountNumber(transferRequest.getSourceAccount()).get();
+        Account receiverAccount = accountRepository.findByAccountNumber(transferRequest.getDestinationAccount()).get();
+
+        senderAccount.setBalance(senderAccount.getBalance().subtract(transferRequest.getAmount()));
+        receiverAccount.setBalance(receiverAccount.getBalance().add(transferRequest.getAmount()));
+
+        Transaction transaction = new Transaction();
+        transaction.setTransactionStatus(TransactionStatus.SUCCESS);
+        transaction.setTransactionType(TransactionType.TRANSFER);
+        transaction.setCreatedAt(LocalDateTime.now());
+        transaction.setDestinationAccount(senderAccount);
+        transactionRepository.save(transaction);
+
+        String message = "Amount transferred successfully";
+        return new TransferResponse(message, transferRequest.getDestinationAccount());
     }
 
     private void validateAccountNumber(String accountNumber){
