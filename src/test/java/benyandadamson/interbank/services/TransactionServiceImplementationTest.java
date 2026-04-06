@@ -13,8 +13,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,11 +51,29 @@ class TransactionServiceImplementationTest {
         newAccountCreation1.setUserType(UserType.INDIVIDUAL);
 
         bankService.createAccount(newAccountCreation1);
+
+        CreateAccountRequest newAccountCreation2 = new CreateAccountRequest();
+        newAccountCreation2.setEmail("paul@gmail.com");
+        newAccountCreation2.setAccountType(AccountType.SAVING);
+        newAccountCreation2.setAccountStatus(AccountStatus.ACTIVE);
+        newAccountCreation2.setCity("City");
+        newAccountCreation2.setAddress("address two");
+        newAccountCreation2.setFirstName("paul");
+        newAccountCreation2.setLastName("paul");
+        newAccountCreation2.setPassword("password123");
+        newAccountCreation2.setPhoneNumber("08044332211");
+        newAccountCreation2.setNextOfKinName("NextOFKinOne");
+        newAccountCreation2.setNextOfKinNumber("09044332211");
+        newAccountCreation2.setState("state");
+        newAccountCreation2.setUserType(UserType.INDIVIDUAL);
+
+        bankService.createAccount(newAccountCreation2);
     }
 
     @Test
     void createAccountRequestTest(){
         assertNotNull(accountRepository);
+        System.out.println(accountRepository.findAll());
     }
 
 }
